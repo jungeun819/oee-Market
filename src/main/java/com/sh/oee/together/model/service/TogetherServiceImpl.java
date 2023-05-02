@@ -89,6 +89,11 @@ public class TogetherServiceImpl implements TogetherService {
 	public List<Map<String, Object>> getJoinMemberCnt(Map<String, Object> param) {
 		return togetherDao.getJoinMemberCnt(param);
 	}
+	
+	@Override
+	public int getCurrentJoinCnt(int no) {
+		return togetherDao.getCurrentJoinCnt(no);
+	}
 
 	@Override
 	public void TimeOverDateTimeUpdate() {
@@ -97,7 +102,6 @@ public class TogetherServiceImpl implements TogetherService {
 
 	@Override
 	public List<Together> selectTogether1List(String memberId) {
-		// TODO Auto-generated method stub
 		return togetherDao.selectTogether1List(memberId);
 	}
 	
