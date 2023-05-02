@@ -45,6 +45,9 @@ public interface TogetherDao {
 	List<JoinMember> joinMemberListByBoardNo(Map<String, Object> params);
 
 	List<Map<String, Object>> getJoinMemberCnt(Map<String, Object> param);
+	
+	@Select("select count(*) from together_chat where together_no = #{no}")
+	int getCurrentJoinCnt(int no);
 
 	void TimeOverDateTimeUpdate();
 
