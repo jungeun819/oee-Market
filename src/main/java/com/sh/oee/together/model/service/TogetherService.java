@@ -42,4 +42,6 @@ public interface TogetherService {
 	/* 효정 시작 */
 	Together findTogetherByChatroomNo(int no);
 	/* 효정 끝 */
+	
+	int getCurrentJoinCnt(int no);
 }
