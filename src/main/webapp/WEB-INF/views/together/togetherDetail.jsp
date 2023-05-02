@@ -424,30 +424,35 @@ overTooltip();
 document.querySelector(".to_join").addEventListener('click', (e) => {
 	const no = '${together.no}';
 	const joinCnt = '${together.joinCnt}';
-	const currJoinCnt = '${joinCnt[0].joinCnt}';
+	let currJoinCnt;
 	const loginMember = '${loginMember.memberId}';
 	const writer = '${together.writer}';
 	const cntTag = document.querySelector(".title-cnt");
 	const alert = document.querySelector(".alert-warning");
 	const enterBtn = document.querySelector(".to_enter");
 	
-	console.log(loginMember, writer);
-
 	/* 정원이 다 찼을 경우 그리고 글쓴이가 아닐 경우 */
-	if(currJoinCnt == joinCnt && loginMember != writer){
-		alert.style.display = 'block';
-		return false;
-	}
-	console.log('다찼으면 여기오면 안됨 또는 작성자는 무조건 넘어와야 해');
+	$.ajax({
+		url : "${pageContext.request.contextPath}/together/currentJoinCnt.do",
+		data : {no : '${together.no}'},
+		method : "GET",
+		dataType : "json",
+		success(data){
+			currJoinCnt = data;
+			if(currJoinCnt == joinCnt && loginMember != writer){
+				alert.style.display = 'block';
+			}
+			else {
+				togetherChat(no);
+			}
+		},
+		error : console.log
+	});
+});
 
-	/* 참여하기 클릭시 게시글에서 참여자 수 증가 처리 */
-	const csrfHeader = "${_csrf.headerName}";
-	const csrfToken = "${_csrf.token}";
-	const headers = {};
-	headers[csrfHeader] = csrfToken;
-	
 /******************* 효정 시작 *********************/
 
+const togetherChat = (no) => {
 	$.ajax({
 		url : `${pageContext.request.contextPath}/chat/togetherChat/\${no}`,
 		method : 'GET',
@@ -460,10 +465,10 @@ document.querySelector(".to_join").addEventListener('click', (e) => {
 			// 참여하기에 성공했을때 참여이웃 목록에 넣기
 			if(data > 0){
 				document.querySelector(".to_join").style.display = "none";
-				enterBtn.style.display = "unset";
+				document.querySelector(".to_enter").style.display = "unset";
 				
 				cntTag.innerText = ''; // 현재 참여자수 초기화
-				cntTag.innerText = Number(currJoinCnt) + 1;
+				cntTag.innerText = Number('${joinCnt[0].joinCnt}') + 1;
 				
 				const memberList = document.querySelector(".current-join-memberList");				
 				
@@ -489,11 +494,7 @@ document.querySelector(".to_join").addEventListener('click', (e) => {
 		},
 		error : console.log
 		});		
-	
-	
-	
-});
-
+};
 </script>
 </c:if>
 
