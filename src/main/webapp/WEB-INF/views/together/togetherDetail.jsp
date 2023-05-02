@@ -26,7 +26,7 @@ window.addEventListener('load', (e) => {
 		<div class="writer-info-box">
 			<div class="writer-box">
 			
-			<!-- -------------------------------------------------------------------------------------------------------------- -->		
+			<!-- 😺 하나 시작 😺 -->		
 			<!-- Button trigger modal -->
 			<button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 			<div class="profile-box">
@@ -90,9 +90,7 @@ window.addEventListener('load', (e) => {
 			  </div>
 			</div>
 			</td>
-		<!-- --------------------------------------------------------------------------------------------- -->
-			
-			
+		<!-- 😺 하나 끝 😺 -->
 				
 				<div class="detail-box">
 					<p>${together.member.nickname}</p>
