@@ -346,16 +346,20 @@ public class TogetherController {
 	}
 	
 	/**
-	 * 테스트
+	 * 현재 참여중인 이웃수 확인
 	 * @param no
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/addJoinMemberCnt.do")
-	public int updateJoinCnt(@RequestParam int no) {
+	@GetMapping("/currentJoinCnt.do")
+	public int currentJoinCnt(@RequestParam int no) {
 		log.debug("no = {}", no);
 		
-		return 0;
+		// 업무로직
+		int currentJoinCnt = togetherService.getCurrentJoinCnt(no);
+		log.debug("currentJoinCnt = {}", currentJoinCnt);
+		
+		return currentJoinCnt;
 	}
 	
 	/** 👻 정은 끝 👻 */
