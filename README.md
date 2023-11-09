@@ -3,7 +3,7 @@
 </p>
 
 #  오이마켓
-> Spring MVC-Project *박효정, 김혜진, 서정은, 손예지, 이하나, 황주현*
+> Spring MVC-Project
 >
 > 배포 : http://193.122.119.58:8080/oee/
 >
